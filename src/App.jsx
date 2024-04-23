@@ -1,16 +1,22 @@
 import React from "react";
-import "./App.css";
+import { Routes, Route, Link, useNavigate } from "react-router-dom";
+
+// import pages
 import Home from "./pages/Home";
 import Diary from "./pages/Diary";
 import New from "./pages/New";
 import Notfound from "./pages/Notfound";
+import Edit from "./pages/Edit";
 
+// import components
 import Button from "./components/Button";
 import Header from "./components/Header";
 
-import { Routes, Route, Link, useNavigate } from "react-router-dom";
-
+// import resources
 import { getEmotionImage } from "./util/get-emotion-images";
+
+// import CSS
+import "./App.css";
 
 function App() {
   const nav = useNavigate();
@@ -21,35 +27,10 @@ function App() {
 
   return (
     <>
-      <Header
-        title={"Header"}
-        leftChild={<Button text={"Left"} />}
-        rightChild={<Button text={"Right"} />}
-      />
-      <Button
-        text={"default"}
-        onClick={() => {
-          console.log("hello");
-        }}
-      />
-      <Button
-        text={"positive"}
-        onClick={() => {
-          console.log("hello");
-        }}
-        type={"POSITIVE"}
-      />
-      <Button
-        text={"negative"}
-        onClick={() => {
-          console.log("hello");
-        }}
-        type={"NEGATIVE"}
-      />
-
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/new" element={<New />} />
+        <Route path="/edit/:id" element={<Edit />} />
         <Route path="/diary/:id" element={<Diary />} />
         <Route path="*" element={<Notfound />} />
       </Routes>
